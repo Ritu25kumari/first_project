@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:first_project/Screen/forgot_password_screen.dart';
 import 'package:first_project/Screen/signup_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:footer/footer.dart';
 import 'package:get/route_manager.dart';
 
 import '../Services/firebase_auth.dart';
@@ -71,13 +72,13 @@ class _LoginScreenState extends State<LoginScreen> {
                   children: [
                     SizedBox(
                       height: 150,
-                      width: 150,
-                      // child: Image.asset("sji_logo.png"),
+                      width: double.infinity,
+                       child: Image.asset("assets/image1.jpeg"),
                     ),
                     const Padding(
                       padding: EdgeInsets.only(bottom: 30.0,top: 12),
                       child: Text(
-                          'Welcome to ToXsl',
+                          'Welcome to ToXSL',
                           style: TextStyle(
                               color: Colors.black,
                               fontSize: 25,fontWeight: FontWeight.bold
@@ -120,6 +121,26 @@ class _LoginScreenState extends State<LoginScreen> {
                                   color: Colors.purple,
                                 ),
                               ),
+                            ),
+                          ),
+                          Container(
+                            alignment: Alignment.bottomRight,
+                            child: TextButton(onPressed: (){Get.to(ForgotPasswordScreen());},
+                                child: Text('forgot password?')),
+                          ),
+                          Container(
+                            child: Row(
+                              children: [
+                                Checkbox(value: _rememberMe,
+                                    checkColor: Colors.white,
+                                    activeColor: Colors.deepPurpleAccent,
+                                    onChanged: (value){
+                                  setState(() {
+                                    _rememberMe= value!;
+                                  });
+                                    }),
+                                Text('Remember me')
+                              ],
                             ),
                           ),
                           SizedBox(height: 24.0),
@@ -175,8 +196,11 @@ class _LoginScreenState extends State<LoginScreen> {
 
                             ],
                           ),
-                          Text('-OR-'),
-                          Text('Sign-in with'),
+                          SizedBox(height: 20,),
+                          Text('-OR-',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
+                          SizedBox(height: 20,),
+                          Text('Sign-in with',style: TextStyle(fontSize: 18),),
+                          SizedBox(height: 30,),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
@@ -195,16 +219,21 @@ class _LoginScreenState extends State<LoginScreen> {
                                       image:AssetImage('assets/google_logo.png'),)
                                 ),),
                             ],),
-                          SizedBox(height: 10,),
-                          GestureDetector(
-                            onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context)=>SignUpScreen()));},
-                            child: RichText(text: TextSpan(text: 'Don\'t have an account ?',style: TextStyle(color: Colors.black,fontSize: 15),
-                                children: [
-                                  TextSpan(text: 'Register here',style: TextStyle(color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold))
-                                ]
-                            ),
-                            ),
+                          SizedBox(height: 40,),
+                          Align(
+                            alignment: Alignment.bottomCenter,
+                            child: Footer(
+                              child: GestureDetector(
+                                onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context)=>SignUpScreen()));},
+                                child: RichText(text: TextSpan(text: 'Don\'t have an account ?',style: TextStyle(color: Colors.black,fontSize: 15),
+                                    children: [
+                                      TextSpan(text: 'Register here',style: TextStyle(color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold))
+                                    ]
+                                ),
+                                ),
 
+                              ),
+                            ),
                           )
                         ],
                       ),
