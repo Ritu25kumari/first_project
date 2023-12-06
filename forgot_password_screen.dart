@@ -18,16 +18,16 @@ class ForgotPasswordScreen extends StatelessWidget {
           snackPosition: SnackPosition.TOP);
     }
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Forgot Password'),
+        centerTitle: true,
+        title: Text('Forgot Password',style: TextStyle(fontWeight: FontWeight.bold),),
         backgroundColor: Colors.deepPurple,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(20.0),
+      backgroundColor: Colors.deepPurple[100],
+      body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -44,6 +44,10 @@ class ForgotPasswordScreen extends StatelessWidget {
             ),
             SizedBox(height: 20),
             ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.deepPurple
+                //primar: Colors.deepPurple
+              ),
               onPressed: () {
                 final email = emailController.text.trim();
                 if (email.isNotEmpty) {
